@@ -9,27 +9,24 @@
       </a>       
   </div> 
 
-  <div id="cuerpo">        
-              
-    <div id="imagen">
-      <img id="imagenfondo" src="./assets/vaccine.jpeg"> 
-    </div>  
+  <div id="cuerpo">                      
     
     <router-view
     v-on:completedLogin="completedLogin"
     v-on:completedSignUp="completedSignUp"
     >
-   </Router-view>    
+    </Router-view>    
    
-   <div id="botones">                            
+    <!--<div id="botones">                            
       
           <button v-if="isAuth">Inicio</button>
           <button class="btn1" v-if="!isAuth" v-on:click= "loadSignUp">Registrarse</button>
+    -->
           <!-- <button v-if="!isAuth" v-on:click= "loadLogin">Iniciar Sesion</button> > -->
-          <button v-if="isAuth" >Cerrar Sesión</button>              
+          <!--<button v-if="isAuth" >Cerrar Sesión</button>              -->
       
-                          
-     </div>
+       <!--
+     </div>-->                   
     
   </div>
        
@@ -56,13 +53,14 @@
       methods:{   
         verifyAuth: function(){
           this.isAuth = localStorage.getItem("isAuth") || false;
-
-          if(this.isAuth == false){
-            this.$router.push({name:"login"})
+          console.log ('validacion '+ this.isAuth )
+          this.$router.push({name:"Login"})
+         /* if(this.isAuth == false){
+            this.$router.push({name:"Login"})
           }
           else{
-           this.$router.push({name: "home"});
-          }
+           this.$router.push({name: "Home"});
+          }*/
         },
         /*loadLogin:function(){
           this.$router.push({name:"login"})
@@ -71,6 +69,11 @@
           this.$router.push({name:"signUp"})
         },
         completedLogin:function(data){
+           this.isAuth = localStorage.setItem("isAuth",true);
+          this.isAuth = localStorage.setItem("username",data.username);
+          this.isAuth = localStorage.setItem("token_access",data.token_access);
+          this.isAuth = localStorage.setItem("token_refresh",data.token_refresh);
+         this.$router.push({name:"Home"})
         },
         completedSignUp:function(data){
         },
@@ -82,13 +85,14 @@
   }
 </script>
 
- 
+
 <style>
 
   /* 
       height : altura
       width : ancho
   */
+  
   div #header{    
       height: 80px;
       width: 100%;    
@@ -109,7 +113,7 @@
      height: 60px;
      width: 150px; 
      position: relative;    
-     left:310%;
+     left:280%;
      top:10%;
   }
 
@@ -117,14 +121,15 @@
      height: 60px;
      width: 200px; 
      position: relative;    
-     left:240%;
+     left:220%;
      top:10%;
   }
 
   div #cuerpo{
     width: 100%;
-    height: 400px;   
+    height: 460px;   
     display:flex;     
+    
     /*background-color:burlywood; */
   }
 

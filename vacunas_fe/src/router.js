@@ -5,6 +5,7 @@ import Login                                  from './components/Login.vue'
 import SignUp                                 from './components/SignUp.vue'
 import asignacion                             from './components/asignacion.vue'
 import Home                                   from './components/Home.vue'
+import Menu                                   from './components/Menu.vue'
 
 const routes = [
   {
@@ -13,24 +14,29 @@ const routes = [
     component: App
   }, 
   {
+    path: '/login/',
+    name: 'Login',
+    component: Login
+  }, 
+  {
+    path: '/territorio/',
+    name: 'SignUp',
+    component: SignUp
+  }, 
+  {
+    path: '/Home/',
+    name: 'Home',
+    component: Home
+  }, 
+  {
     path: '/asignacion/',
     name: 'asignacion',
     component: asignacion
   }, 
   {
-    path: '/login/',
-    name: 'login',
-    component: Login
-  }, 
-  {
-    path: '/territorio/',
-    name: 'signUp',
-    component: SignUp
-  }, 
-  {
-    path: '/home/',
-    name: 'home',
-    component: Home
+    path: '/menu/',
+    name: 'Menu',
+    component: Menu
   }, 
 ]
 

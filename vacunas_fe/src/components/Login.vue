@@ -1,15 +1,22 @@
 <template> 
- <div class="login-form">
-   <div class="containerLoginUser">
-     <h2>Login</h2> 
-       <form v-on:submit.prevent="processLoginUser" method="POST">
-         <input type="text" v-model="user.username" placeholder="Usuario">
-         <br>
-         <input type="password" v-model="user.password" placeholder="Contraseña">
-         <br>
-         <button type="submit">Iniciar Sesión</button>         
-       </form>
-    </div> 
+  <div class="login-form">
+    <div class="imagen">
+      <img id="imagenfondo" src="../assets/vaccine.jpeg"> 
+    </div>  
+    <div class="containerLoginUser">
+      <h2>Login</h2> 
+      <form v-on:submit.prevent="processLoginUser" method="POST">
+        <input class="input" type="text" v-model="user.username" placeholder="Usuario">
+        <br>
+        <input class="input" type="password" v-model="user.password" placeholder="Contraseña">
+        <br>
+        <button class="button" type="submit">Iniciar Sesión</button>         
+      </form>
+      <div id="registrarse" >
+        <button class="button" v-on:Click="loadRegistrarse">Registrarse</button>  
+      </div>
+    </div>            
+    
  </div>  
 </template>
 
@@ -41,12 +48,15 @@
             token_refresh: result.data.refresh,
           }          
           this.$emit('completedLogin',dataLogin)
+          alert ("autenticacion correcta");
         })
         .catch((error) => {
           if(error.response.status == "401")
             alert("ERROR 401: Credenciales incorrectas");
-        });
-        
+        });        
+      },
+      loadRegistrarse:function(){
+         this.$router.push({name:"SignUp"});
       }
     }
 
@@ -56,22 +66,43 @@
  
 <style>
 
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    background-image: url("/assets/fondo1.jng");
-    background-size: cover;
-    background-attachment: fixed;
-    padding: 0%;
-    box-sizing: border-box;
-  }
 
-.login-form {
-  position:relative;
-  text-align: center;
-  top:30px;
+
+div .login-form {
+ /* position:absolute;*/
+  text-align: center;  
+  width:100%;
+  height:1000px;  
+  left:3px;  
   /*border: 2px solid;*/
-  left: 50px;
+}
+
+div .imagen{
+   margin:0px;
+   float:left;   
+   width:65%;
+}
+
+div .imagen #imagenfondo{        
+  position:relative;
+  height: 480px;
+  max-width:100%;
+  width: 885px; 
+  top: -8px;        
+  left: -10px;
+}
+
+h2 { 
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+div .login-form .containerLoginUser{  
+  position:relative;
+  align:center;  
+  float:right;
+  width:30%;  
+  top:50px;
+  left:-40px;
 }
 
 .login-link {
@@ -81,7 +112,8 @@
 }
 
 
-input {
+
+.input {
   text-align: center;
   background-color: #ECF0F1;
   border: 2px solid transparent;
@@ -105,10 +137,10 @@ input {
 
 
 
-  button{
+  .button{
     position :relative;
     top: 20px;
-    left: -30px;
+    left: -60px;
     color: #0099CC;
     background: transparent;
     border: 2px solid #0099CC;
@@ -116,9 +148,9 @@ input {
     color: black;
     padding: 16px 32px;
     text-align: center;
-    display: inline-block;
+    display: inline;
     font-size: 16px;
-    margin: 8px 15px;
+    margin: 8px 1px;
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
     cursor: pointer;
@@ -147,7 +179,15 @@ input {
    font: Arial;   
   }
 
+  #registrarse{
+    position: relative;
+    top: -75px;
+    left: 65px;
+    float:right;
+  }
+
  p{
    color: black;
  }
 </style>
+
